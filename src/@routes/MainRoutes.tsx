@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login, Signup } from "@modules";
+import { Home, Login, Signup } from "@modules";
 import App from "App";
 
 interface RoutesProps {}
@@ -9,7 +9,7 @@ const MainRoutes: React.FC<RoutesProps> = (props) => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Login />} />
+          <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Route>

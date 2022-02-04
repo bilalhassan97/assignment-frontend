@@ -1,9 +1,7 @@
 import logo from "./icons/logo.png";
-import loginCardImage from "./images/loginCardImage.jpg";
-import signupCardImage from "./images/signupCardImage.jpg";
+import restaurant from "./images/restaurant.jpg";
 
 export const icons: any = {
   logo,
-  loginCardImage,
-  signupCardImage,
+  restaurant,
 };

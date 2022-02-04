@@ -18,4 +18,23 @@ declare global {
   interface AuthState {
     loading: boolean;
   }
+
+  interface Restaurant {
+    _id: string;
+    name: string;
+    schedule: [
+      {
+        day: string;
+        startHours: number;
+        startMinutes: number;
+        endHours: number;
+        endMinutes: number;
+      }
+    ];
+  }
+  interface RestaurantState {
+    loading: boolean;
+    restaurants: Restaurant[];
+    totalRestaurants: number;
+  }
 }

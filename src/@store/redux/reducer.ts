@@ -2,10 +2,12 @@ import { combineReducers } from "redux";
 
 import app from "../app/AppReducers";
 import auth from "../auth/AuthReducers";
+import restaurant from "../restaurant/RestaurantReducers";
 
-const Travelfine = combineReducers({
+const restaurantHub = combineReducers({
   app,
   auth,
+  restaurant,
 });
 
-export default Travelfine;
+export default restaurantHub;
