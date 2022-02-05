@@ -1,6 +1,3 @@
-// import { ThemeProvider } from "@material-ui/styles";
-// import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
-
 import { responsiveFontSizes } from "@mui/material";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";

@@ -27,7 +27,9 @@ function* loginSaga(action: Action) {
       const errorMessage = response.response.data.message;
       toast.error(errorMessage);
     }
-  } catch (err) {
+  } catch (err: any) {
+    const errorMessage = err.response.data.message;
+    toast.error(errorMessage);
     console.log("err: ", err);
   }
 }
@@ -54,7 +56,9 @@ function* signupSaga(action: Action) {
       const errorMessage = response.response.data.message;
       toast.error(errorMessage);
     }
-  } catch (err) {
+  } catch (err: any) {
+    const errorMessage = err.response.data.message;
+    toast.error(errorMessage);
     console.log("err: ", err);
   }
 }

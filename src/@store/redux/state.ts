@@ -32,9 +32,22 @@ declare global {
       }
     ];
   }
+  interface Collection {
+    _id: string;
+    title: string;
+    user: string;
+  }
+
   interface RestaurantState {
     loading: boolean;
     restaurants: Restaurant[];
     totalRestaurants: number;
+  }
+
+  interface CollectionState {
+    loading: boolean;
+    collections: Collection[];
+    totalCollections: number;
+    collection?: Collection;
   }
 }

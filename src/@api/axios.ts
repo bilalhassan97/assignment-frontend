@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import store from "../@store";
 
+import store from "../@store";
 import { logoutUser } from "@helpers/utils";
 import { setAppLoading } from "@store/app/AppActions";
 
@@ -32,9 +31,8 @@ axiosInstance.interceptors.response.use(ResponseInterceptor, (error: any) => {
     return;
   } else {
     if (error.response.status === 401) {
-      const dispatch = useDispatch();
       const navigate = useNavigate();
-      logoutUser(navigate, dispatch);
+      logoutUser(navigate);
     }
     return Promise.reject(error);
   }

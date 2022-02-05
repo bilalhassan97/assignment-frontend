@@ -30,3 +30,36 @@ export const restaurantUrl = (payload: any) => {
       minutes
   );
 };
+
+export const getCollectionsUrl = (payload: any) => {
+  const { page = "", limit = "" } = payload;
+  return encodeURI("collection?page=" + page + "&limit=" + limit);
+};
+
+export const collectionUrl = () => {
+  return encodeURI("collection");
+};
+
+export const collectionByIdUrl = (id: string) => {
+  return encodeURI("collection/" + id);
+};
+
+export const removeSavedRestaurantUrl = (id: string) => {
+  return encodeURI("savedRestaurant/" + id);
+};
+
+export const savedRestaurantUrl = () => {
+  return encodeURI("savedRestaurant");
+};
+
+export const getSavedRestaurantsUrl = (payload: any) => {
+  const { page = "", limit = "", collectionId = "" } = payload;
+  return encodeURI(
+    "savedRestaurant?page=" +
+      page +
+      "&limit=" +
+      limit +
+      "&collectionId=" +
+      collectionId
+  );
+};
