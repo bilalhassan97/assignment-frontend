@@ -5,10 +5,11 @@ import DateAdapter from "@mui/lab/AdapterDateFns";
 import {
   DateRangePicker as MaterialDateRangePicker,
   DatePicker as MaterialDatePicker,
+  DateTimePicker as MaterialDateTimePicker,
 } from "@mui/lab";
 import { Controller } from "react-hook-form";
 
-interface DatePickerProps {
+interface DateTimePickerProps {
   name: string;
   label?: string;
   control: any;
@@ -35,10 +36,10 @@ interface DatePickerProps {
   minDate?: Date;
   maxDate?: Date;
   type?: any;
-  labelOutside?: boolean;
+  minDateTime?: Date;
 }
 
-const DatePicker: React.FC<DatePickerProps> = (props) => {
+const DateTimePicker: React.FC<DateTimePickerProps> = (props) => {
   const {
     name,
     control,
@@ -59,7 +60,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
     maxDate,
     type,
     label,
-    labelOutside,
+    minDateTime,
   } = props;
 
   return (
@@ -89,22 +90,43 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
                       helperText={errorMessage}
                       required={required}
                       variant={variant}
-                      size={size ? size : "medium"}
+                      size={size}
                       fullWidth={fullWidth}
                       color={color}
                     />
                     <TextField
                       {...endProps}
-                      className={`capitalize  ml-2 `}
+                      className={`capitalize  ml-2`}
                       error={error}
                       helperText={errorMessage}
                       required={required}
                       variant={variant}
-                      size={size ? size : "medium"}
+                      size={size}
                       fullWidth={fullWidth}
                       color={color}
                     />
                   </div>
+                )}
+              />
+            ) : type === "dateTime" ? (
+              <MaterialDateTimePicker
+                {...field}
+                label={label}
+                okText={okText}
+                cancelText={cancelText}
+                minDateTime={minDateTime}
+                renderInput={(props) => (
+                  <TextField
+                    {...props}
+                    className={`capitalize`}
+                    error={error}
+                    helperText={errorMessage}
+                    required={required}
+                    variant={variant}
+                    size={size}
+                    fullWidth={fullWidth}
+                    color={color}
+                  />
                 )}
               />
             ) : (
@@ -117,12 +139,6 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
                 maxDate={maxDate}
                 renderInput={(params) => (
                   <div className="flex flex-col w-full">
-                    {labelOutside && (
-                      <label className="text-sm font-medium  whitespace-nowrap">
-                        {label}
-                        {required && "*"}
-                      </label>
-                    )}
                     <TextField
                       {...params}
                       className={`capitalize`}
@@ -130,10 +146,10 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
                       helperText={errorMessage}
                       required={required}
                       variant={variant}
-                      size={size ? size : "medium"}
+                      size={size}
                       fullWidth={fullWidth}
                       color={color}
-                      label={!labelOutside && label}
+                      label={label}
                     />
                   </div>
                 )}
@@ -146,4 +162,4 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   );
 };
 
-export default DatePicker;
+export default DateTimePicker;

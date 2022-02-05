@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-
-import { Button, ImageAsset } from "@components";
 import { Drawer } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
+import { Button, ImageAsset } from "@components";
 
 // const headerLinks: any = [
 //   { label: "Travel Insurance", target: "travel-insurance" },
@@ -17,11 +18,16 @@ import { useState } from "react";
 
 interface HeaderProps {}
 
-const Header: React.FC<HeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (toggleOpen: boolean) => {
     setOpen(toggleOpen);
+  };
+
+  const navigateHome = () => {
+    navigate("/");
   };
 
   return (
@@ -29,7 +35,11 @@ const Header: React.FC<HeaderProps> = (props) => {
       <div className="lg:hidden">
         <MenuIcon onClick={() => toggleDrawer(!open)} />
       </div>
-      <ImageAsset className="w-20 ml-auto lg:ml-0 mr-auto lg:w-20" src="logo" />
+      <ImageAsset
+        className="w-20 ml-auto lg:ml-0 mr-auto cursor-pointer"
+        src="logo"
+        onClick={navigateHome}
+      />
       <div className="hidden lg:flex items-start space-x-4">
         <Link to="/login">
           <Button variant="outlined" color="secondary" className="normal-case">
@@ -45,8 +55,9 @@ const Header: React.FC<HeaderProps> = (props) => {
       <Drawer anchor={"left"} open={open} onClose={() => toggleDrawer(false)}>
         <div className="flex flex-col px-10 py-10 space-y-4">
           <ImageAsset
-            className="w-20 ml-auto lg:ml-0 mr-auto lg:w-20 border-b"
+            className="w-20 ml-auto lg:ml-0 mr-auto border-b"
             src="logo"
+            onClick={navigateHome}
           />
           <Link to="/login">
             <Button

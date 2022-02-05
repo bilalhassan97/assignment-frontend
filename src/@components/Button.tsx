@@ -43,7 +43,7 @@ export const CustomButton: React.FC<Props> = (props) => {
       size={size}
       disableElevation
       disabled={disabled}
-      className={`outline-none ${className}`}
+      className={`outline-none rounded-full ${className} `}
       onClick={onClick}
       style={style}
       onMouseOver={onMouseOver}

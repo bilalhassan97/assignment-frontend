@@ -50,6 +50,16 @@ const SignupForm: React.FC<SignupFormProps> = (props) => {
         errorMessage={errors?.password?.message}
         required
       />
+      <Input
+        name="confirmPassword"
+        variant="standard"
+        control={control}
+        label={"Confirm Password"}
+        type="password"
+        error={!!errors.confirmPassword}
+        errorMessage={errors?.confirmPassword?.message}
+        required
+      />
       <Button
         variant="contained"
         color="primary"

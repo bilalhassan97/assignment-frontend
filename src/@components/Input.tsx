@@ -30,7 +30,6 @@ interface Props {
     | "error"
     | "info"
     | "warning"
-    | "default"
     | undefined;
   size?: "small" | "medium" | undefined;
   list?: any;
@@ -77,6 +76,7 @@ const Input: React.FC<Props> = (props) => {
               required={required}
               fullWidth={fullWidth}
               size={size}
+              color={color}
             >
               {list.map((listItem: any) => {
                 return (
@@ -123,6 +123,7 @@ const Input: React.FC<Props> = (props) => {
               rows={rows}
               size={size}
               placeholder={placeholder}
+              color={color}
             />
           </div>
         )
