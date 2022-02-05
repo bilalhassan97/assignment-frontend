@@ -12,18 +12,18 @@ const RestaurantReducer = (
 ): RestaurantState => {
   switch (action.type) {
     case RestaurantActionTypes.GET_RESTAURANTS:
-      if (action.payload.currentPage === 1) {
+      if (action.payload.page === 1) {
         return {
           ...state,
           restaurants: [],
           totalRestaurants: 0,
           loading: true,
         };
-      } else {
-        return { ...state, loading: true };
       }
+      return { ...state, loading: true };
+
     case RestaurantActionTypes.GET_RESTAURANTS_SUCCESS:
-      if (action.payload.currentPage === 1) {
+      if (action.payload.page === 1) {
         return {
           ...state,
           restaurants: action.payload.restaurants,
@@ -35,6 +35,15 @@ const RestaurantReducer = (
         restaurants: [...state.restaurants, ...action.payload.restaurants],
         totalRestaurants: action.payload.totalRestaurants,
       };
+
+    case RestaurantActionTypes.REMOVE_SAVED_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        restaurants: state.restaurants.filter(
+          (item) => action.payload.id !== item._id
+        ),
+      };
+
     case RestaurantActionTypes.SET_RESTAURANT_LOADER:
       return {
         ...state,

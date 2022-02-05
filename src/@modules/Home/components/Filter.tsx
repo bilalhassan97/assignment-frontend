@@ -1,14 +1,12 @@
 import { useForm } from "react-hook-form";
-// import { useDispatch } from "react-redux";
 
 import { Input, Button, DateTimePicker } from "@components";
-// import { getRestaurants } from "@store/restaurant/RestaurantActions";
 
 interface FilterProps {
   handleFilterChange: any;
 }
 
-const days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 const defaultValues = {
   dateTime: "",
@@ -18,7 +16,6 @@ const defaultValues = {
 const Filter: React.FC<FilterProps> = (props) => {
   const { handleFilterChange } = props;
 
-  // const dispatch = useDispatch();
   const methods = useForm({
     mode: "all",
     defaultValues,
@@ -39,13 +36,7 @@ const Filter: React.FC<FilterProps> = (props) => {
       minutes: !isNaN(minutes) ? minutes : undefined,
       name: name !== "" ? name : undefined,
     };
-    // const payload = {
-    //   page: 1,
-    //   limit: 5,
-    //   ...filter,
-    // };
     handleFilterChange(filter);
-    // dispatch(getRestaurants({ payload }));
   }
 
   return (

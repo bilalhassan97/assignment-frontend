@@ -5,6 +5,7 @@ import Filter from "./components/Filter";
 import RestaurantCard from "./components/RestaurantCard";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getRestaurants } from "@store/restaurant/RestaurantActions";
+import { SaveCollectionModal } from "@components/modals";
 
 interface HomeProps {}
 
@@ -20,6 +21,8 @@ const Home: React.FC<HomeProps> = () => {
   const dispatch = useDispatch();
 
   const [currentPageNo, setCurrentPageNo] = useState(1);
+  const [saveCollectionOpen, setSaveCollectionOpen] = useState(false);
+  const [restaurantId, setRestaurantId] = useState<string | undefined>();
   const [filter, setFilter] = useState({});
 
   const observer = useRef<any>();
@@ -37,7 +40,7 @@ const Home: React.FC<HomeProps> = () => {
             limit,
             ...filter,
           };
-          dispatch(getRestaurants({ payload }));
+          dispatch(getRestaurants(payload));
         }
       });
       if (node) observer.current.observe(node);
@@ -50,7 +53,7 @@ const Home: React.FC<HomeProps> = () => {
       page: 1,
       limit,
     };
-    dispatch(getRestaurants({ payload }));
+    dispatch(getRestaurants(payload));
   }, [dispatch]);
 
   const handleFilterChange = (filter: any) => {
@@ -61,7 +64,7 @@ const Home: React.FC<HomeProps> = () => {
       ...filter,
     };
     setCurrentPageNo(1);
-    dispatch(getRestaurants({ payload }));
+    dispatch(getRestaurants(payload));
   };
 
   return (
@@ -78,6 +81,10 @@ const Home: React.FC<HomeProps> = () => {
               restaurantRef={
                 restaurants.length === index + 1 ? lastElementRef : null
               }
+              onSave={(id: string) => {
+                setRestaurantId(id);
+                setSaveCollectionOpen(true);
+              }}
             />
           ))}
         </div>
@@ -86,6 +93,14 @@ const Home: React.FC<HomeProps> = () => {
           No Restaurants Found!
         </p>
       )}
+      <SaveCollectionModal
+        open={saveCollectionOpen}
+        onClose={() => {
+          setSaveCollectionOpen(false);
+          setRestaurantId(undefined);
+        }}
+        restaurantId={restaurantId}
+      />
     </div>
   );
 };

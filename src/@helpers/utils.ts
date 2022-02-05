@@ -1,8 +1,8 @@
-export const logoutUser = (navigate: any, dispatch: any) => {
+export const logoutUser = (navigate: any) => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("userId");
 
-  navigate.push("/login");
+  navigate("/login");
 };
 
 export const getFormattedDate = (current_datetime: Date) => {
